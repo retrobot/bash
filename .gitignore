@@ -1,0 +1,17 @@
+# git ignored files #
+
+# all files #
+*
+
+# exlude ignoring git files #
+!.gitignore
+!.git
+
+# exclude for bash scripts #
+!/bin
+!/.ssh
+
+!.bash_profile
+!.profile
+!.bashrc
+!.inputrc
