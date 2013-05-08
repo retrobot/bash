@@ -8,8 +8,8 @@
 !.git
 
 # exclude for bash scripts #
-!/bin
-!/.ssh
+!/bin/
+!/.ssh/
 
 !.bash_profile
 !.profile
