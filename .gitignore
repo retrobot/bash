@@ -9,7 +9,9 @@
 
 # exclude for bash scripts #
 !/bin/
+!bin/*
 !/.ssh/
+!.ssh/*
 
 !.bash_profile
 !.profile
