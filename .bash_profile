@@ -36,10 +36,10 @@ platform=`uname`
 os='unknown'
 
 if [ "$platform" == 'Darwin' ]; then
-  platform='mac'
+  os='mac'
 fi
 
-if [ $platform == 'mac' ]; then
+if [ $os == 'mac' ]; then
   export PATH=${PATH}:/Applications/MAMP/Library/bin
 fi
 
