@@ -34,7 +34,7 @@ alias reload=". ~/.bash_profile"
 export PATH=${PATH}:/usr/local/share/npm/bin:/usr/local/lib/node_modules
 
 # ssh connection commands
-alias sshinfo="ssh -p 3784 infashi1@infashiononline.com"
+alias sshinfo='ssh -p 3784 infashi1@infashiononline.com -t "cd public_html ; bash"'
 alias sshinfo2="ssh -p 3784 infashi1@infashiononline.com; cd public_html"
 alias sshinfo3="ssh -p 3784 infashi1@infashiononline.com:public_html"
 
