@@ -7,6 +7,10 @@
 !.gitignore
 !.git
 
+# exlude for custom scripts #
+!/scripts/
+!/scripts/*
+
 # exclude for bash scripts #
 !/bin/
 !bin/*
