@@ -11,7 +11,7 @@
 # exlude for custom scripts #
 !scripts/
 !scripts/*
-!scripts/*/*
+!scripts/*/*/*/*/*
 
 # exclude helpers
 !helpers
@@ -35,4 +35,4 @@
 !.vim/colors
 !.vim/colors/*
 !.vim/*
-!.vim/*/*
+!.vim/*/*/*/*

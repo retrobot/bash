@@ -1,59 +1,63 @@
 #!/bin/bash
 
-SOURCE_WWW="http://c758482.r82.cf2.rackcdn.com/"
-TEXT_EDITOR="Sublime Text 2"
-SHORT_NAME="sublime"
-TEXT_EDITOR_EXE="sublime_text"
-TEXT_EDITOR_WEB_ESCAPED="${TEXT_EDITOR// /%20}"
-TEXT_EDITOR_ESCAPED="${TEXT_EDITOR}// /\ }"
-VERSION=".0.2"
-TEXT_EDITOR_VERSION=${TEXT_EDITOR_WEB_ESCAPED}${VERSION}
-PACKED_WITH=".tar.bz2"
-MACHINE_TYPE=`uname -m`
-DOWNLOAD_DIR=~/Downloads
-UNPACKED="${TEXT_EDITOR}"
+source_www="http://c758482.r82.cf2.rackcdn.com/"
+text_editor="Sublime Text 2"
+short_name="sublime"
+text_editor_exe="sublime_text"
+text_editor_web_escaped="${text_editor// /%20}"
+text_editor_escaped="${text_editor}// /\ }"
+version=".0.2"
+text_editor_version=${text_editor_web_escaped}${version}
+packed_with=".tar.bz2"
+machine_type=`uname -m`
+download_dir=~/Downloads
+unpacked="${text_editor}"
+script_dir="$( cd "$( dirname "$0" )"; pwd)"
 
+# alias script_dir="cd ${download_dir}"
+# . script_dir
 
-alias script_dir="cd ${DOWNLOAD_DIR}"
-. script_dir
-
-if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-  DOWNLOADED_PACKAGE=${TEXT_EDITOR_VERSION}'%20x64'${PACKED_WITH}
+if [ ${machine_type} == 'x86_64' ]; then
+  downloaded_package=${text_editor_version}'%20x64'${packed_with}
 else
-  DOWNLOADED_PACKAGE=${TEXT_EDITOR_VERSION}${PACKED_WITH}
+  downloaded_package=${text_editor_version}${packed_with}
 fi
 
-echo ${DOWNLOADED_PACKAGE}
+echo "Ready package is: "${downloaded_package}
 
-if [ ! -d ${DOWNLOAD_DIR} ]; then
-  mkdir ${DOWNLOAD_DIR}
-fi
- 
-cd ${DOWNLOAD_DIR}
-wget ${SOURCE_WWW}${DOWNLOADED_PACKAGE}
-DOWNLOADED_PACKAGE="${DOWNLOADED_PACKAGE//%20/ }"
-echo "end"
-echo ${DOWNLOADED_PACKAGE}
-cd ${DOWNLOAD_DIR}
-tar -xf "${DOWNLOADED_PACKAGE}"
-
-if [ -d "/opt/${UNPACKED}" ]; then
-  sudo rm -r "/opt/${UNPACKED}"
+if [ ! -d ${download_dir} ]; then
+  mkdir ${download_dir}
 fi
 
-sudo mv "${UNPACKED}" /opt/
+cd ${download_dir}
 
-EXE_LINK="/opt/${UNPACKED}/${TEXT_EDITOR_EXE}"
-LINK="/usr/bin/${SHORT_NAME}"
+wget ${source_www}${downloaded_package}
+downloaded_package="${downloaded_package//%20/ }"
+echo "File downloaded succesfully"
+echo "Downloaded package: "${downloaded_package}
 
-if [ -f ${LINK} ]; then
-  sudo rm ${LINK}
+cd ${download_dir}
+tar -xf "${downloaded_package}"
+
+if [ -d "/opt/${unpacked}" ]; then
+  sudo rm -r "/opt/${unpacked}"
 fi
 
-sudo ln -s "${EXE_LINK}" "${LINK}"
+sudo mv "${unpacked}" /opt/
 
-DESKTOP_FILE=${SHORT_NAME}".desktop"
-echo ${DESKTOP_FILE}
-if [ ! -f ${DESKTOP_FILE} ] && [ -d /usr/share/applications ]; then
-  sudo cp "${DESKTOP_FILE}" /usr/share/applications
+exe_link="/opt/${unpacked}/${text_editor_exe}"
+link="/usr/bin/${short_name}"
+
+if [ -f ${link} ]; then
+  sudo rm ${link}
+fi
+
+sudo ln -s "${exe_link}" "${link}"
+
+desktop_file="${short_name}.desktop"
+slash="/"
+desktop_file_path= "${script_dir}/${desktop_file}"
+echo "path is: $desktop_file_path"
+if [ -d /usr/share/applications ]; then
+  sudo cp "${desktop_file_path}" /usr/share/applications
 fi
