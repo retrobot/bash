@@ -9,7 +9,11 @@
 
 # exlude for custom scripts #
 !/scripts/
-!/scripts/*
+!scripts/*
+
+# exclude helpers
+!helpers
+!helpers/*
 
 # exclude for bash scripts #
 !/bin/
@@ -21,3 +25,10 @@
 !.profile
 !.bashrc
 !.inputrc
+
+# exclude vi(m) config and rest - have to specify folders explicitly
+!.vimrc
+!.vim
+!.vim/colors
+!.vim/colors/*
+

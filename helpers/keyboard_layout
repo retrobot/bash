@@ -1,0 +1,19 @@
+### Debian based distro's
+#Different keymaps in :
+/usr/share/keymaps/i386/ 
+#or 
+/usr/share/kbd/keymaps/i386/ 
+#To change the keymap:
+loadkeys uk
+
+### Redhat based distro's
+#Different keymaps in: 
+/lib/kbd/keymaps/i386
+#To change the keymap:
+loadkeys uk
+
+### Ubuntu distro's
+# Install if not present:
+sudo apt-get install console-data
+#Run command to change
+sudo dpkg-reconfigure console-data
