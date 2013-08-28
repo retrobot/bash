@@ -9,12 +9,14 @@
 !README.md
 
 # exlude for custom scripts #
-!/scripts/
+!scripts/
 !scripts/*
+!scripts/*/*
 
 # exclude helpers
 !helpers
 !helpers/*
+!helpers/*/*
 
 # exclude for bash scripts #
 !/bin/
@@ -32,4 +34,5 @@
 !.vim
 !.vim/colors
 !.vim/colors/*
-
+!.vim/*
+!.vim/*/*
