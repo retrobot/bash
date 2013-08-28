@@ -6,6 +6,7 @@
 # exlude ignoring git files #
 !.gitignore
 !.git
+!README.md
 
 # exlude for custom scripts #
 !/scripts/
