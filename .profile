@@ -24,7 +24,14 @@
 # User dependent .profile file
 
 # Set user-defined locale
-export LANG=$(locale -uU)
+# export LANG=$(locale -uU)
+
+# 256 colors in terminal
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
 
 # This file is not read by bash(1) if ~/.bash_profile or ~/.bash_login
 # exists.
