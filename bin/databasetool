@@ -1,0 +1,33 @@
+#!/bin/bash
+
+SCR_NAME=$(basename $0)
+OPT=$1
+USER=$2
+DB=$3
+DUMP=$4
+
+# Super simple database backup restore
+if [[ $OPT = "--help" || $OPT = "" ]]; then
+    echo "Backup: $SCR_NAME -backup (user) (database)"
+    echo "Restore: $SCR_NAME -restore (user) (database) (dumpfile)"
+fi
+
+if [[ $OPT = "-backup" ]]; then
+    echo "mysqldump -u${USER} -p ${DB} > backup_${DB}_$(date +%y%m%d).sql.bckp"
+    mysqldump -u${USER} -p ${DB} > backup_${DB}_$(date +%y%m%d).sql.bckp
+elif [[ $OPT = "-restore" ]]; then
+    echo "mysql -u${USER} -p ${DB} < ${DUMP}"
+    mysql -u${USER} -p ${DB} < ${DUMP}
+fi
+
+if [[ $OPT = "-restoremag" ]]; then
+    mysql -u${USER} -p ${DB} -e"SELECT * FROM `mg1_core_config_data` WHERE `path` LIKE '%base_url%';"
+    mysql -u${USER} -p ${DB} -e"UPDATE `mg1_core_config_data` SET value='http://127.0.0.1:8080' WHERE `path` LIKE '%base_url%';"
+fi
+
+echo $?
+if [[ $? ]]; then
+    echo "Command succedded"
+else
+    echo "Command failed"
+fi
